@@ -31,11 +31,11 @@
     <h1>Status Posting System</h1>
     
         <form action="poststatusform.php" method="post">
-            <label class="statusinput">Status Code:</label>
-            <input type="text" name="statuscode"><br>
+            <label class="statusinput">Status Code: *</label>
+            <input type="text" name="statuscode" required placeholder="e.g S0001"><br>
             <br>
-            <label class="statusinput">Status:</label>
-            <input type="text" name="status"><br>
+            <label class="statusinput">Status: *</label>
+            <input type="text" name="status" required><br>
    
 
     <br>
