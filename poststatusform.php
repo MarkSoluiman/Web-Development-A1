@@ -79,6 +79,23 @@
 
 <?php
 
+//Checking for status code validation
+
+$statusCodeInput=$_POST["statuscode"];
+$statusInput=$_POST["status"];
+
+if(is_null($statusCodeInput)||!similar_text( substr($statusCodeInput,0,1),"S")||!is_numeric(substr($statusCodeInput,1))||strlen($statusCodeInput!=5))
+{
+    echo "Invalid status code format,Please enter a valid status code";
+}
+else{
+    $statusCode=$statusCodeInput;
+}
+
+
+
+
+
 
 
 ?>
