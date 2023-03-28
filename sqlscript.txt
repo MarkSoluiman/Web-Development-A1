@@ -1,0 +1,9 @@
+1-#Create the status table
+create table status(
+code varchar(5),
+name varchar(255),
+share varchar(50),
+date date,
+permission varchar(50),
+primary key (code)
+);
