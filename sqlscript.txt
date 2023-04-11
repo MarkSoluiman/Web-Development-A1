@@ -1,4 +1,4 @@
-1-#Create the status table
+#1-Create the status table
 create table status(
 code varchar(5),
 name varchar(255),
@@ -8,9 +8,16 @@ permission varchar(50),
 primary key (code)
 );
 
-2-#Insert data into status table
+#2-Insert data into status table
 insert into status (code,name,share,date,permission)
 values("S0001","Doing my first Assignment","Public","2017/08/22","Allow Like");
+
+#3-Drop the status table
+drop table status;
+
+#
+
+
 
 
 

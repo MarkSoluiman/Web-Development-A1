@@ -39,31 +39,38 @@
    
 
     <br>
-    
-    <label id="radiolabel" for="shareradio">Share:</label>
 
-    <input type="radio" value="public" id="public" name="shareoption">
+    <!-- //Radio -->
+    
+    <label id="radiolabel" for="shareradio">Share:
+
+    <input type="radio" value="public" id="shareradio" name="radiooption">
     <label id="radiooption" for="public">Public</label>
 
 
-    <input type="radio" value="friends" id="friends" name="shareoption">
+    <input type="radio" value="friends" id="shareradio" name="radiooption">
     <label id="radiooption" for="friends">Friends</label>
 
 
-    <input type="radio" value="onlyme" id="onlyme" name="shareoption">
+    <input type="radio" value="onlyme" id="shareradio" name="radiooption">
     <label id="radiooption" for="onlyme">Only me</label>
     <br><br>
+    </label>
+
+    <!-- Date -->
     
 
     <label class="dateinput" id="dateinput">Date:</label>  
     <input type="date" name="date"> 
 
     <br><br>
+
+    <!-- CheckBox -->
     
     <label class="checkbox" >Permission:</label>
-    <input type="checkbox" name="checkboxoption"> Allow Like 
-    <input type="checkbox" name="checkboxoption"> Allow Comments 
-    <input type="checkbox" name="checkboxoption"> Allow Sahre 
+    <input type="checkbox" name="checkboxoption" value="allow Like"> Allow Like 
+    <input type="checkbox" name="checkboxoption" value="allow Comments"> Allow Comments 
+    <input type="checkbox" name="checkboxoption" value="allow Share"> Allow Share 
     <br><br>
 
     <input type="submit" value="Post" >
@@ -79,12 +86,25 @@
 
 <?php
 
-//Checking for status code validation
+
 
 $statusCodeInput=$_POST["statuscode"];
-$statusInput=$_POST["status"];
+$status=$_POST["status"];
+$share=$_POST["radiooption"];
+$date=$_POST["date"];
+$permission=$_POST["checkboxoption"];
 
-if(is_null($statusCodeInput)||!similar_text( substr($statusCodeInput,0,1),"S")||!is_numeric(substr($statusCodeInput,1))||strlen($statusCodeInput!=5))
+
+
+echo "<p> $share </p>";
+echo "<p> $permission </p>";
+echo "<p> $date </p>";
+
+
+
+
+//Checking for status code validation
+if(is_null($statusCodeInput)||!similar_text( substr($statusCodeInput,0,1),"S")||!is_numeric(substr($statusCodeInput,1))||strlen($statusCodeInput)!=5)
 {
     echo "Invalid status code format,Please enter a valid status code";
 }
