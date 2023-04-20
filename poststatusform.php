@@ -94,10 +94,6 @@ $date = $_POST["date"];
 $permissionArray = $_POST["checkboxoption"];
 
 
-//removing any white space from status code:
-// $statusCodeInput = preg_replace('/\s+/', '', $statusCodeInput);
-
-//Checking for status code validation
 
 ?>
 

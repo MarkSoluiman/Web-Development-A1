@@ -10,9 +10,12 @@ PRIMARY KEY (Status_code)
 
 #2-Insert data into status table
 insert into status (Status_code,Status,Share,Date,Permission)
-values("S0001","Doing my first Assignment","Public","2023/08/22","Allow Like");
+values("S0001","Doing my first Assignment","Public","2023/08/22","Allow Like Allow Comment");
 
-#3-Drop the status table
+#3-Selecting a status 
+select * from status where LOWER(Status) LIKE LOWER("Finish");
+
+#4-Drop the status table
 drop table status;
 
 

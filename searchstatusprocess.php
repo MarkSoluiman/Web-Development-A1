@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
 
+<body>
+<div class="content">
 <h1>Status Information</h1>
 <br>
 <br>
+
 
 <?php
 
@@ -64,12 +66,10 @@ if ($validSearch) {
         $numOfRows = mysqli_num_rows($searchResults);
         $Results = mysqli_fetch_row($searchResults);
 
-
         //if a status exist:
         if ($numOfRows > 0) {
 
             while ($Results) {
-
 
                 // show status search results if status exist:
                 echo "<p>Status: $Results[1] </p>";
@@ -89,6 +89,7 @@ if ($validSearch) {
 
     } else {
         echo "<p>You didn't post any status yet, please post a new status.</p>";
+        echo "<a href='http://drk3695.cmslamp14.aut.ac.nz/assign1/poststatusform.php'>Post a new status</a>";
     }
 } else {
     echo "<p>Please enter a word to search for your status.</p>";
@@ -98,4 +99,15 @@ if ($validSearch) {
 ?>
 
 </body>
+
+<a href="http://drk3695.cmslamp14.aut.ac.nz/assign1/searchstatusform.html">Search for another status</a>
+
+<body>
+
+</div>
+
+
+</body>
+
+
 </html>
