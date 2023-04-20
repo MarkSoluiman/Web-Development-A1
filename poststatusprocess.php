@@ -13,8 +13,12 @@
 
 <?php
 
+
 require "poststatusform.php";
 require_once "config/sqlSettings.php";
+
+
+
 
 //try to connect to database:
 $dbConnect = @mysqli_connect($host, $user, $pswd, $dbName)
@@ -30,6 +34,14 @@ or die("<p> The database is not available </p>");
 echo "<p> Successfully opened the database.</p>";
 
 $successMessage = "Congratulations! The status has been posted";
+
+// grouping all of the strings in the permission array into one string with spaces:
+
+foreach($permissionArray as $p){
+    $permission.=$p;
+    $permission.=" ";
+    
+}
 
 //check for validity of user input (Valid status code) :
 
@@ -107,18 +119,6 @@ if ($validCode) {
 }
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </div>

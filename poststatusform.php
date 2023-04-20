@@ -91,7 +91,7 @@ $statusCodeInput = $_POST["statuscode"];
 $status = $_POST["status"];
 $share = $_POST["radiooption"];
 $date = $_POST["date"];
-$permission = $_POST["checkboxoption"];
+$permissionArray = $_POST["checkboxoption"];
 
 
 //removing any white space from status code:
