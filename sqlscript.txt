@@ -1,21 +1,21 @@
 #1-Create the status table
 create table status(
-code varchar(5),
-name varchar(255),
-share varchar(50),
-date date,
-permission varchar(50),
-primary key (code)
+Status_code varchar(5),
+Status varchar(255),
+Share varchar(50) NOT NULL ,
+Date date,
+Permission varchar(80) NOT NULL,
+PRIMARY KEY (Status_code)
 );
 
 #2-Insert data into status table
-insert into status (code,name,share,date,permission)
-values("S0001","Doing my first Assignment","Public","2017/08/22","Allow Like");
+insert into status (Status_code,Status,Share,Date,Permission)
+values("S0001","Doing my first Assignment","Public","2023/08/22","Allow Like");
 
 #3-Drop the status table
 drop table status;
 
-#
+
 
 
 
