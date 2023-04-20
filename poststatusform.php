@@ -13,11 +13,11 @@
         }
         label.dateinput{
             width: 100px;
-            
+
             display: inline-block;
         }
         label.checkbox{
-            width: 100px;  
+            width: 100px;
             display: inline-block;
         }
 
@@ -29,19 +29,19 @@
 
 <body>
     <h1>Status Posting System</h1>
-    
-        <form action="poststatusform.php" method="post">
+
+        <form action="poststatusprocess.php" method="post">
             <label class="statusinput">Status Code: *</label>
             <input type="text" name="statuscode" required placeholder="e.g S0001"><br>
             <br>
             <label class="statusinput">Status: *</label>
             <input type="text" name="status" required><br>
-   
+
 
     <br>
 
     <!-- //Radio -->
-    
+
     <label id="radiolabel" for="shareradio">Share:
 
     <input type="radio" value="public" id="shareradio" name="radiooption">
@@ -58,19 +58,20 @@
     </label>
 
     <!-- Date -->
-    
 
-    <label class="dateinput" id="dateinput">Date:</label>  
-    <input type="date" name="date"> 
+
+    <label class="dateinput" id="dateinput">Date:</label>
+    <input type="date" name="date" value="<?= date('Y-m-d', time()); ?>" />
+
 
     <br><br>
 
     <!-- CheckBox -->
-    
+
     <label class="checkbox" >Permission:</label>
-    <input type="checkbox" name="checkboxoption" value="allow Like"> Allow Like 
-    <input type="checkbox" name="checkboxoption" value="allow Comments"> Allow Comments 
-    <input type="checkbox" name="checkboxoption" value="allow Share"> Allow Share 
+    <input type="checkbox" name="checkboxoption[]" value="Allow Like"> Allow Like
+    <input type="checkbox" name="checkboxoption[]" value="Allow Comments"> Allow Comments
+    <input type="checkbox" name="checkboxoption[]" value="Allow Share"> Allow Share
     <br><br>
 
     <input type="submit" value="Post" >
@@ -86,37 +87,17 @@
 
 <?php
 
+$statusCodeInput = $_POST["statuscode"];
+$status = $_POST["status"];
+$share = $_POST["radiooption"];
+$date = $_POST["date"];
+$permission = $_POST["checkboxoption"];
 
 
-$statusCodeInput=$_POST["statuscode"];
-$status=$_POST["status"];
-$share=$_POST["radiooption"];
-$date=$_POST["date"];
-$permission=$_POST["checkboxoption"];
-
-
-
-echo "<p> $share </p>";
-echo "<p> $permission </p>";
-echo "<p> $date </p>";
-
-
-
+//removing any white space from status code:
+// $statusCodeInput = preg_replace('/\s+/', '', $statusCodeInput);
 
 //Checking for status code validation
-if(is_null($statusCodeInput)||!similar_text( substr($statusCodeInput,0,1),"S")||!is_numeric(substr($statusCodeInput,1))||strlen($statusCodeInput)!=5)
-{
-    echo "Invalid status code format,Please enter a valid status code";
-}
-else{
-    $statusCode=$statusCodeInput;
-}
-
-
-
-
-
-
 
 ?>
 

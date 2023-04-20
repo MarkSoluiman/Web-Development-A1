@@ -7,28 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+
 
 <div class="content">
 
-<?php 
+<?php
 
-require ("poststatusform.php");
-require_once("config/sqlSettings.php");
-
-
+require "poststatusform.php";
+require_once "config/sqlSettings.php";
 
 //try to connect to database:
-$dbConnect=@mysqli_connect($host,$user,$pswd,$dbName)
-    or die ("<p> The database server is not available </p>");
+$dbConnect = @mysqli_connect($host, $user, $pswd, $dbName)
+or die("<p> The database server is not available </p>");
 
 echo "<p> Successfully connected to the database server </p>";
 
-
 //Try to open the drk3695 database after a successful connection:
 
-@mysqli_select_db($dbConnect,$dbName)
-    or die ("<p> The database is not available </p>");
+@mysqli_select_db($dbConnect, $dbName)
+or die("<p> The database is not available </p>");
 
 echo "<p> Successfully opened the database.</p>";
 
@@ -37,51 +34,96 @@ echo "<p> Successfully opened the database.</p>";
 
 
 
+//check for validity of user input (Valid status code) :
+
+
+    if (empty($_POST["statuscode"]) || !similar_text(substr($_POST["statuscode"], 0, 1), "S") || !is_numeric(substr($_POST["statuscode"], 1)) || strlen($_POST["statuscode"]) != 5) {
+       
+        $validCode=false;
+        
+       // header("Location:http://drk3695.cmslamp14.aut.ac.nz/assign1/poststatusform.php", true, 301);
+        
+
+    } else {
+
+        $statusCodeInput = $_POST["statuscode"];
+        //removing any white space from status code:
+        $statusCodeInput = preg_replace('/\s+/', '', $statusCodeInput);
+        $statusCode = $statusCodeInput;
+        $validCode=true;
+    }
+
+
+
 //check if table exist:
 
+$sqlString = "select * from $table";
 
-    $sqlString= "select * from $table";
+$exist = mysqli_query($dbConnect, $sqlString);
 
 
+//check if the status code entered is valid:
+if ($validCode)    {
 
+//if table already exist:
+if ($exist ) {
 
-    $exist=mysqli_query($dbConnect,$sqlString);
+    //check if the provided status code already exist:
+
+    $sqlString = "select * from $table where Status_Code = '$statusCode'";
+    $rowsCount = mysqli_num_rows(mysqli_query($dbConnect, $sqlString));
+
+    if ($rowsCount > 0) {
+
+        echo "<p>$statusCode already exist </p>";
+
+    } 
     
-    //if table already exist:
-    if ($exist){
-    $sqlString="insert into $table (Status_Code,Status,Share,Date,Permission)
+    else {
+        
+
+        $sqlString = "insert into $table (Status_Code,Status,Share,Date,Permission)
     values ('$statusCode','$status','$share','$date','$permission');";
-    
-    
+
+        }
+ 
+
     }
-    
-    //if table doesn't already exist create a table named vipmember:
-    else{
-        $sqlString="create table $table (
-            Status_Code String NOT NULL ,
+
+
+
+//if table doesn't already exist create a table named status:
+else {
+    $sqlString = "create table $table (
+            Status_Code varchar (5) NOT NULL ,
             Status varchar (255),
-            Share varchar (50),
+            Share varchar (50)  NOT NULL,
             Date date,
-            Permission varchar (60),
+            Permission varchar (80)  NOT NULL,
             PRIMARY KEY (Status_Code)
         ); ";
-    
-        $queryResult=@mysqli_query($dbConnect,$sqlString)
-        or die ("<p>Unable to execute the query.</p>"
+
+    $queryResult = @mysqli_query($dbConnect, $sqlString)
+    or die("<p>Unable to execute the query.</p>"
         . "<p>Error code " . mysqli_errno($dbConnect)
-        . ": " . mysqli_error($dbConnect) . "</p>");
-    
-    
-    }
-    $sqlString="insert into $table (Status_Code,Status,Share,Date,Permission)
+        . ": " . mysqli_error($dbConnect) );
+
+}
+$sqlString = "insert into $table (Status_Code,Status,Share,Date,Permission)
     values ('$statusCode','$status','$share','$date','$permission');";
-    
-    $queryResult=@mysqli_query($dbConnect,$sqlString)
-        or die ("<p>Unable to execute the query.</p>"
-        . "<p>Error code " . mysqli_errno($dbConnect)
-        . ": " . mysqli_error($dbConnect) . "</p>");
-    
-    
+
+$queryResult = @mysqli_query($dbConnect, $sqlString)
+or die("<p>Unable to execute the query.</p>"
+    . "<p>Error code " . mysqli_errno($dbConnect)
+    . ": " . mysqli_error($dbConnect) );
+
+
+}
+
+
+else{
+    echo "Invalid status code format,Please enter a valid status code";
+}
 
 
 
@@ -101,6 +143,6 @@ echo "<p> Successfully opened the database.</p>";
 
 
 </div>
-    
+
 </body>
 </html>
