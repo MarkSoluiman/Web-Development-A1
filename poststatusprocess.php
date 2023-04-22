@@ -64,7 +64,7 @@ $sqlString = "select * from $table";
 
 $exist = mysqli_query($dbConnect, $sqlString);
 
-//check if the status code entered is valid:
+// if the status code entered is valid:
 if ($validCode) {
 
 //if table already exist:
@@ -114,7 +114,10 @@ if ($validCode) {
         . ": " . mysqli_error($dbConnect));
     echo "<p>$successMessage</p>";
 
-} else {
+} 
+
+//if entered code is not valid:
+else {
     echo "Invalid status code format,Please enter a valid status code";
 }
 
