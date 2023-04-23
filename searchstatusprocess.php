@@ -7,8 +7,11 @@
     <title>Document</title>
 </head>
 
+
 <body>
+    
 <div class="content">
+
 <h1>Status Information</h1>
 <br>
 <br>
@@ -98,16 +101,14 @@ if ($validSearch) {
 
 ?>
 
-</body>
-
 <a href="http://drk3695.cmslamp14.aut.ac.nz/assign1/searchstatusform.html">Search for another status</a>
-
-<body>
-
 </div>
 
-
 </body>
+
+
+
+
 
 
 </html>

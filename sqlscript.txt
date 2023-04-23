@@ -12,7 +12,7 @@ PRIMARY KEY (Status_code)
 insert into status (Status_code,Status,Share,Date,Permission)
 values("S0001","Doing my first Assignment","Public","2023/08/22","Allow Like Allow Comment");
 
-#3-Selecting a status 
+#3-Selecting a status according to a user search 
 select * from status where LOWER(Status) LIKE LOWER("Finish");
 
 #4-Drop the status table
